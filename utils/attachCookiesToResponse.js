@@ -51,7 +51,7 @@ const attachCookiesToResponse = (res, user, refreshToken) => {
     expires: new Date(Date.now() + longerTokenDuration),
     sameSite: "none",
   });
-  //   =========================================
+  //   =====================================
 };
 
 module.exports = attachCookiesToResponse;
