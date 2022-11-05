@@ -69,7 +69,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
