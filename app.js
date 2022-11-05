@@ -53,16 +53,16 @@ const serverErrorHandler = require("./middleware/serverErrorHandler");
 // enables us to access req.body values
 app.use(express.json());
 // ++++++++++++++++++++++++++
-/////////////////////////////////////
-// const whitelist = ["http://localhost:3000"];
-// const corsOptions = {
-//   credentials: true, // This is important.
-//   origin: (origin, callback) => {
-//     if (whitelist.includes(origin)) return callback(null, true);
+///////////////////////////////////
+const whitelist = ["hhttps://mattiyaweh-demo.netlify.app/"];
+const corsOptions = {
+  credentials: true, // This is important.
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) return callback(null, true);
 
-//     callback(new Error("Not allowed by CORS"));
-//   },
-// };
+    callback(new Error("Not allowed by CORS"));
+  },
+};
 // ////////////////////////////////////
 
 const limiter = rateLimit({
@@ -73,7 +73,7 @@ const limiter = rateLimit({
 });
 app.set("trust proxy", 1);
 app.use(limiter);
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
