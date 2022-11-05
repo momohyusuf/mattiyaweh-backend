@@ -54,15 +54,15 @@ const serverErrorHandler = require("./middleware/serverErrorHandler");
 app.use(express.json());
 // ++++++++++++++++++++++++++
 ///////////////////////////////////
-const whitelist = ["hhttps://mattiyaweh-demo.netlify.app/"];
-const corsOptions = {
-  credentials: true, // This is important.
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin)) return callback(null, true);
+// const whitelist = ["hhttps://mattiyaweh-demo.netlify.app/"];
+// const corsOptions = {
+//   credentials: true, // This is important.
+//   origin: (origin, callback) => {
+//     if (whitelist.includes(origin)) return callback(null, true);
 
-    callback(new Error("Not allowed by CORS"));
-  },
-};
+//     callback(new Error("Not allowed by CORS"));
+//   },
+// };
 // ////////////////////////////////////
 
 const limiter = rateLimit({
@@ -71,19 +71,10 @@ const limiter = rateLimit({
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "Content-Type",
-    "Authorization"
-  );
-  next();
-});
+
 app.use(limiter);
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
