@@ -69,16 +69,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "Content-Type",
-    "Authorization"
-  );
-  next();
-});
+app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
