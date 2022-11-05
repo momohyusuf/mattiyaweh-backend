@@ -80,7 +80,7 @@ app.use(limiter);
 
 app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
-app.use(morgan("tiny"));
+// app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
 
 app.use("/api/v1/auth", authRoutes);

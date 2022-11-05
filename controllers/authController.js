@@ -103,7 +103,6 @@ const verifyEmailAddress = async (req, res) => {
 // +++++++++++++++++++++++++++++++++++++++++++++++++
 
 const loginUser = async (req, res) => {
-  console.log(req.body);
   const { email, password } = req.body;
   // check the email and password is provided
   if (!email || !password) {
