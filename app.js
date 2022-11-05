@@ -55,14 +55,9 @@ app.use(express.json());
 // ++++++++++++++++++++++++++
 ///////////////////////////////////
 // const whitelist = ["hhttps://mattiyaweh-demo.netlify.app/"];
-// const corsOptions = {
-//   credentials: true, // This is important.
-//   origin: (origin, callback) => {
-//     if (whitelist.includes(origin)) return callback(null, true);
-
-//     callback(new Error("Not allowed by CORS"));
-//   },
-// };
+const corsOptions = {
+  credentials: true, // This is important.
+};
 // ////////////////////////////////////
 
 const limiter = rateLimit({
