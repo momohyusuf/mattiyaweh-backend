@@ -71,8 +71,18 @@ const limiter = rateLimit({
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-app.set("trust proxy", 1);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "Content-Type",
+    "Authorization"
+  );
+  next();
+});
 app.use(limiter);
+
 app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
 // app.use(morgan("tiny"));
