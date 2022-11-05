@@ -38,16 +38,18 @@ const attachCookiesToResponse = (res, user, refreshToken) => {
   // ====================
   //   send the cookie to the user
   res.cookie("accessToken", accessToken, {
-    httpOnly: false,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     signed: true,
     expires: new Date(Date.now() + oneDay),
+    sameSite: "none",
   });
   res.cookie("refreshToken", refreshTokenJWT, {
-    httpOnly: false,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     signed: true,
     expires: new Date(Date.now() + longerTokenDuration),
+    sameSite: "none",
   });
   //   =========================================
 };
