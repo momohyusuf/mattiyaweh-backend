@@ -191,6 +191,7 @@ const loginUser = async (req, res) => {
 // logout user function
 
 const logoutUser = async (req, res) => {
+  await Token.findOneAndDelete({ user: req.user.userId });
   // reset the cookies empty values
   res.cookie("accessToken", " ", {
     expires: new Date(Date.now()),
