@@ -207,11 +207,6 @@ const logoutUser = async (req, res) => {
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-// ===============================================
-// hash the passwordToken for extra security using crypto hash function
-
-// ============================================
-
 // send forget password link
 const forgetPassword = async (req, res) => {
   console.log(req.body);

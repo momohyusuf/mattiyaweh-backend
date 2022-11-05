@@ -14,7 +14,7 @@ const authenticateUser = require("../middleware/authenticationMiddleware");
 router.post("/register", registerUser);
 router.post("/verify-email", verifyEmailAddress);
 router.post("/login", loginUser);
-router.delete("/logout", logoutUser);
+router.delete("/logout", authenticateUser, logoutUser);
 router.post("/forget-password", forgetPassword);
 router.post("/reset-password", resetPassword);
 router.get("/show-user", authenticateUser, showCurrentUser);
