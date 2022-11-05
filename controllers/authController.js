@@ -197,11 +197,13 @@ const logoutUser = async (req, res) => {
     expires: new Date(Date.now()),
     httpOnly: true,
     sameSite: "none",
+    secure: true,
   });
   res.cookie("refreshToken", " ", {
     httpOnly: true,
     expires: new Date(Date.now()),
     sameSite: "none",
+    secure: true,
   });
 
   res.status(StatusCodes.OK).json({ message: "logout successful" });
