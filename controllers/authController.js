@@ -12,7 +12,6 @@ const sendResetPasswordEmail = require("../utils/sendPasswordReset");
 
 // register User controller
 const registerUser = async (req, res) => {
-  await User.deleteMany();
   // check if an account already exist with the user email address
   const emailAlreadyRegistered = await User.findOne({
     email: req.body.email,
