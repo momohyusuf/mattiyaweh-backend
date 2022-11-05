@@ -54,11 +54,17 @@ const serverErrorHandler = require("./middleware/serverErrorHandler");
 app.use(express.json());
 // ++++++++++++++++++++++++++
 ///////////////////////////////////
-// const whitelist = ["hhttps://mattiyaweh-demo.netlify.app/"];
+const whitelist = ["hhttps://mattiyaweh-demo.netlify.app"];
+
 const corsOptions = {
   credentials: true, // This is important.
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin)) return callback(null, true);
+
+    callback(new Error("Not allowed by CORS"));
+  },
 };
-// ////////////////////////////////////
+////////////////////////////////////
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
