@@ -27,9 +27,21 @@ const registerUser = async (req, res) => {
 
   // if an account does'nt already exist, create a new one.
   const verificationToken = crypto.randomBytes(40).toString("hex");
-  req.body.verificationToken = verificationToken;
 
-  const user = await User.create(req.body);
+  const createUser = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    state: req.body.state,
+    city: req.body.city,
+    profilePicture: req.body.profilePicture,
+    password: req.body.password,
+    acceptedAgreement: req.body.acceptedAgreement,
+    verificationToken,
+  };
+
+  const user = await User.create(createUser);
 
   const { email, firstName } = user;
 
@@ -91,6 +103,7 @@ const verifyEmailAddress = async (req, res) => {
 // +++++++++++++++++++++++++++++++++++++++++++++++++
 
 const loginUser = async (req, res) => {
+  console.log(req.body);
   const { email, password } = req.body;
   // check the email and password is provided
   if (!email || !password) {

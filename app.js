@@ -54,7 +54,10 @@ const serverErrorHandler = require("./middleware/serverErrorHandler");
 app.use(express.json());
 // ++++++++++++++++++++++++++
 ///////////////////////////////////
-const whitelist = ["hhttps://mattiyaweh-demo.netlify.app"];
+const whitelist = [
+  "https://mattiyaweh-demo.netlify.app",
+  "http://localhost:3000",
+];
 
 const corsOptions = {
   credentials: true, // This is important.
@@ -77,7 +80,7 @@ app.use(limiter);
 
 app.use(cors(corsOptions));
 app.use(cookieParser(process.env.JWT_SECRET));
-// app.use(morgan("tiny"));
+app.use(morgan("tiny"));
 app.use(fileUpload({ useTempFiles: true }));
 
 app.use("/api/v1/auth", authRoutes);
